@@ -110,9 +110,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### Troubleshooting for me
 
 npm uninstall tailwindcss postcss autoprefixer
+
 npm install tailwindcss@latest postcss@latest autoprefixer@latest
 
 npx tailwindcss init -p
 
 npm uninstall tailwindcss postcss autoprefixer
+
 npm install tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
