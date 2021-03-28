@@ -106,3 +106,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Troubleshooting for me
+
+npm uninstall tailwindcss postcss autoprefixer
+npm install tailwindcss@latest postcss@latest autoprefixer@latest
+
+npx tailwindcss init -p
+
+npm uninstall tailwindcss postcss autoprefixer
+npm install tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
