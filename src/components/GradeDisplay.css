@@ -1,0 +1,10 @@
+.output-section {
+    margin: 10px;
+    padding: 20px;
+    background-color: rgb(255, 244, 234);
+    box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
