@@ -3,9 +3,8 @@ import { CourseCard } from "./components/CourseCard";
 import CourseInput from "./components/CourseInput";
 import GradeDisplay from "./components/GradeDisplay";
 
-function App() {
-  const credit = [1, 2, 3];
 
+function App() {
   const [myCourses, setMyCourse] = useState([]);
   const [inputData, setInputData] = useState({});
   const [GPA, setGPA] = useState(4.0);
