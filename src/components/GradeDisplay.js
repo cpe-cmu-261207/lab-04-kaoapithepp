@@ -1,6 +1,6 @@
 import './GradeDisplay.css';
 
-function GradeDisplay() {
+function GradeDisplay(props) {
     return (
         <div className="output-section">
             <p>GPAX: </p>
