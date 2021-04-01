@@ -1,0 +1,15 @@
+.grade-elm {
+    margin: 10px;
+}
+
+.remove-btn {
+    margin-top: 4px;
+    padding: 4px;
+    background-color: brown;
+    color: white;
+    width: fit-content;
+}
+
+.remove-btn:hover {
+    cursor: pointer;
+}

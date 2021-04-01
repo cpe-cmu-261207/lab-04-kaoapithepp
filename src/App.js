@@ -4,6 +4,7 @@ import CourseInput from "./components/CourseInput";
 import GradeDisplay from "./components/GradeDisplay";
 import './components/CourseInput.css';
 import './components/GradeDisplay.css';
+import './components/CourseCard.css';
 
 
 function App() {
@@ -13,8 +14,8 @@ function App() {
   const [inputData, setInputData] = useState({
     subjName:'',
     subjCode:'',
-    credit:'',
-    gradeLetter:'',
+    credit:'3',
+    gradeLetter:'A',
   });
   const [GPA, setGPA] = useState(0.0);
 
@@ -33,49 +34,49 @@ function App() {
         case 'A':
           grade_num = 4;
           credit_cal += Number(i.credit);
-          all_cal += grade_num * credit_cal;
+          all_cal += grade_num * Number(i.credit);
           break;
         
         case 'B+':
           grade_num = 3.5;
           credit_cal += Number(i.credit);
-          all_cal += grade_num * credit_cal;
+          all_cal += grade_num * Number(i.credit);
           break;
           
         case 'B':
           grade_num = 3;
           credit_cal += Number(i.credit);
-          all_cal += grade_num * credit_cal;
+          all_cal += grade_num * Number(i.credit);
           break;
 
         case 'C+':
           grade_num = 2.5;
           credit_cal += Number(i.credit);
-          all_cal += grade_num * credit_cal;
+          all_cal += grade_num * Number(i.credit);
           break;
 
         case 'C':
           grade_num = 2;
           credit_cal += Number(i.credit);
-          all_cal += grade_num * credit_cal;
+          all_cal += grade_num * Number(i.credit);
           break;
           
         case 'D+':
           grade_num = 1.5;
           credit_cal += Number(i.credit);
-          all_cal += grade_num * credit_cal;
+          all_cal += grade_num * Number(i.credit);
           break;
 
         case 'D':
           grade_num = 1;
           credit_cal += Number(i.credit);
-          all_cal += grade_num * credit_cal;
+          all_cal += grade_num * Number(i.credit);
           break;
 
         case 'F':
           grade_num = 0;
           credit_cal += Number(i.credit);
-          all_cal += grade_num * credit_cal;
+          all_cal += grade_num * Number(i.credit);
           break;
       }
     })
@@ -91,7 +92,9 @@ function App() {
   function addCourse(event) {
     event.preventDefault();
     // TODO
-    const temp = []
+    const temp = [...myCourses, inputData];
+    setMyCourse(temp);
+    console.log(myCourses);
 
     // recalculate GPA
     calculateGPA(temp);
@@ -104,6 +107,11 @@ function App() {
    */
   function onDeleteCourse(id) {
     // TODO
+    const delbox = myCourses.filter(function (obj) {
+      return obj.subID !== id
+    })
+    setMyCourse(delbox);
+    calculateGPA(delbox);
   }
 
   return (
@@ -114,18 +122,26 @@ function App() {
       <div className="h-2/3 md:w-2/4 p-3 rounded-lg mx-auto overflow-auto">
         <h1 className="text-2xl my-3">Added courses</h1>
         {/* TODO display courses */}
-        <CourseCard />
+        {myCourses.map((item) => {
+          const deletebtn = document.createElement('botton');
+          deletebtn.innerHTML = 'x'
+          deletebtn.onclick = () => {
+            onDeleteCourse(item.sub)
+          }
+          return <CourseCard sub_1={item.subjName} subID_1={item.subjCode} cred_1={item.credit} grd_1={item.gradeLetter} btn_1={onDeleteCourse} />
+        })}
       </div>
       {/* TODO add course input form */}
       <h2 className="text-center text-2xl">Input your data</h2>
       {/* <CourseInput /> ลองทำ component แล้วโคตรยากเลยครับ*/}
       <div className="input-section">
+        <form onSubmit={addCourse} className="flex align-middle">
             <p className="block">Subject Name:</p>
-            <input type="text" placeholder="Subject Name" value={inputData.subjName}/>
+            <input type="text" placeholder="Subject Name" value={inputData.subjName} onChange={(e) => setInputData({ ...inputData, subjName: e.target.value })}/>
             <p className="block">Subject Code:</p>
-            <input type="text" placeholder="Subject Code" value={inputData.subjCode}/>
+            <input type="text" placeholder="Subject Code" value={inputData.subjCode} onChange={(e) => setInputData({ ...inputData, subjCode: e.target.value })}/>
             <p className="block">Credit:</p>
-            <select name="credit" id="credit" value={inputData.credit}>
+            <select name="credit" id="credit" value={inputData.credit} onChange={(e) => setInputData({ ...inputData, credit: e.target.value })}>
                 {
                     credit.map((i) => (
                         <option key={i} value={i}>{i}</option>
@@ -133,14 +149,15 @@ function App() {
                 }
             </select>
             <p className="block">Grade Letter:</p>
-            <select name="gradeLetter" id="gradeLetter" value={inputData.gradeLette}>
+            <select name="gradeLetter" id="gradeLetter" value={inputData.gradeLetter} onChange={(e) => setInputData({ ...inputData, gradeLetter: e.target.value })}>
                 {
                     grade.map((i) => (
                         <option key={i} value={i}>{i}</option>
                     ))
                 }
             </select>
-            <button className="btn btn-green">Add</button>
+            <button className="btn btn-green" type="submit">Add</button>
+          </form>  
         </div>
       {/* TODO display calculated GPA */}
       <h2 className="text-center text-2xl">Result</h2>

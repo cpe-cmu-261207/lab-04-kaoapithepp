@@ -28,6 +28,11 @@
     border-radius: 5px;
 }
 
+.input-section form {
+    justify-content: center;
+    align-items: center;
+}
+
 button {
     width: 40%;
     max-width: 30%;
